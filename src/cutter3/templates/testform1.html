@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} TEST BLOCK {% endblock %}
+
+{% block content %}
+
+
+
+{% if all_urls %}
+
+    {% for url in all_urls %}
+
+        {% csrf_token %}
+ <tr>
+                <td ><a href="{% url 'redir' url.user_url %}">{{url.user_url}}</a></td>
+                <td ><a href="{% url 'redir' url %}">{{url.short_url}}</a></td>
+
+                <td><center><a href="{% url 'delete' thing.id %}">Удалить</a></center></td>
+ </tr>
+
+
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}
