@@ -11,7 +11,7 @@ def home(request):
         if answer == "auto":
             current_object = UrlShort()
             current_object.user_url = request.POST.get('user_url')
-            current_object.short_url = randint(1, 999666)
+            current_object.short_url = str(request.build_absolute_uri()) + str(randint(1, 999666))
 
             duplicate_short_url = UrlShort.objects.filter(short_url=current_object.short_url) or None
             if duplicate_short_url:
@@ -24,7 +24,7 @@ def home(request):
         else:
             user_url = request.POST.get('user_url')
             num_visits = request.POST.get('num_visits')
-            short_url = ''
+            short_url = str(request.build_absolute_uri())
             request.session['user_url'] = user_url
             request.session['short_url'] = short_url
             request.session['num_visits'] = num_visits
@@ -43,7 +43,7 @@ def short_url_form(request):
         if duplicate_short_url:
             return HttpResponse('Такой URL уже есть, вернитесь назад и придумайте другой')
 
-        request.session['short_url'] = short_url
+        request.session['short_url'] = request.session['short_url'] + str(short_url)
         UrlShort.objects.create(user_url=request.session['user_url'], short_url=request.session['short_url'])
         all_urls = UrlShort.objects.all()
         return render(request, 'testform1.html', {'all_urls': all_urls})
