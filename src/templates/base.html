@@ -8,11 +8,14 @@
 
 
 <form method="POST">
-
+<p>Ссылка для сокращения</p>
 <input type="text" name="user_url">
-<input type="text" name="short_url">
+<p></p>
+<input type="radio" name="radio" value="self" id="self"> Придумаю урл самостоятельно<br>
+<input type="radio" name="radio" value="auto" id="auto"> Автогенерация урла<br>
     {% csrf_token %}
     <input type="submit" value="send">
+    <input type="reset" value="clear">
 
 </form>
 

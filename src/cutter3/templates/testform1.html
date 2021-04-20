@@ -12,10 +12,10 @@
 
         {% csrf_token %}
  <tr>
-                <td ><a href="{% url 'redir' url.user_url %}">{{url.user_url}}</a></td>
-                <td ><a href="{% url 'redir' url %}">{{url.short_url}}</a></td>
-
-                <td><center><a href="{% url 'delete' thing.id %}">Удалить</a></center></td>
+     <td ><a href={{url.user_url}}>{{url.user_url}}</a></td>
+     <td ><a href="{% url 'redir' url.id%}">{{url.short_url}}</a></td>
+     <td >{{url.num_visits}}</td>
+     <td >{{url.date}}</td><br>
  </tr>
 
 

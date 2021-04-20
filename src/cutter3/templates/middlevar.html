@@ -1,0 +1,13 @@
+{% block title %} Сокращаем ссылки с 2007 {% endblock %}
+
+{% block content %}
+
+
+<form method="GET">
+<input type="text" name="short_url"> Введите свой URL <br>
+    {% csrf_token %}
+    <input type="submit" value="send">
+</form>
+
+
+{% endblock %}
